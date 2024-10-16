@@ -9,9 +9,16 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hey <span id="username">User</span>!</h1> <!-- Имя пользователя -->
+        <h1>Hey <span id="username">User</span>!</h1>
         <button id="mainButton">Claim Reward</button>
-        <button id="connectTon">Connect to TON Wallet</button> <!-- Кнопка подключения к TON -->
+        <button id="connectTon">Connect to TON Wallet</button>
+        <div id="walletInfo" style="display:none;">
+            <h2>Wallet Information</h2>
+            <p id="walletAddress"></p>
+            <p id="walletBalance"></p>
+            <input type="text" id="amount" placeholder="Amount to send" />
+            <button id="sendTon">Send TON</button>
+        </div>
     </div>
 
     <script>
@@ -20,7 +27,7 @@
         // Получение имени пользователя из Telegram
         const user = tg.initDataUnsafe?.user;
         if (user) {
-            document.getElementById("username").textContent = user.first_name || "User"; // Используем имя пользователя
+            document.getElementById("username").textContent = user.first_name || "User";
         }
 
         tg.MainButton.text = "Claim Reward";
@@ -30,27 +37,68 @@
             tg.sendData("Reward claimed!");
         });
 
+        let tonWallet;
+
         // Функция подключения к TON кошельку
         document.getElementById('connectTon').addEventListener('click', async () => {
             try {
-                // Создание экземпляра TON Web
                 const tonWeb = new TonWeb();
-                
-                // Запрос адреса кошелька
-                const wallet = tonWeb.wallet.create({ workchain: 0 }); // 0 - основная цепочка
-                const address = await wallet.getAddress();
-                alert(`Ваш адрес кошелька: ${address.toString(true)}`); // Вывод адреса
+                tonWallet = tonWeb.wallet.create({ workchain: 0 }); // Создание кошелька на основной цепочке
+                const address = await tonWallet.getAddress();
+                document.getElementById("walletAddress").textContent = `Ваш адрес кошелька: ${address.toString(true)}`;
+                document.getElementById("walletInfo").style.display = 'block'; // Показать информацию о кошельке
+                await updateBalance(address); // Обновить баланс
             } catch (error) {
                 console.error("Ошибка подключения к TON:", error);
                 alert("Не удалось подключиться к кошельку TON.");
             }
         });
+
+        // Функция для обновления баланса
+        async function updateBalance(address) {
+            try {
+                const balance = await tonWeb.getBalance(address);
+                document.getElementById("walletBalance").textContent = `Баланс: ${balance / 1e9} TON`; // Делим на 10^9, чтобы получить TON
+            } catch (error) {
+                console.error("Ошибка получения баланса:", error);
+            }
+        }
+
+        // Функция отправки TON
+        document.getElementById('sendTon').addEventListener('click', async () => {
+            const amount = document.getElementById('amount').value;
+            if (!tonWallet || !amount) {
+                alert("Сначала подключите кошелек и введите сумму.");
+                return;
+            }
+
+            try {
+                const address = await tonWallet.getAddress();
+                const tonAmount = TonWeb.utils.toNano(amount); // Перевод в нано-тонны
+
+                const result = await tonWeb.wallet.create({ workchain: 0 }).transfer({
+                    secretKey: tonWallet.secretKey,
+                    toAddress: address,
+                    amount: tonAmount,
+                });
+
+                alert(`Трансакция успешна! Hash: ${result}`);
+                await updateBalance(address); // Обновить баланс после отправки
+            } catch (error) {
+                console.error("Ошибка отправки TON:", error);
+                alert("Не удалось отправить TON.");
+            }
+        });
     </script>
     
     <script src="https://unpkg.com/tonweb/dist/tonweb.min.js"></script>
-
+    
 </body>
 </html>
+
+    
+
+
 
 
 
