@@ -1,30 +1,33 @@
 body {
     background-image: url('background.jpg'); /* Фоновое изображение */
-    background-size: cover; /* Растянуть фон на весь экран */
-    background-position: center; /* Центрирование фона */
+    background-size: cover; /* Заполняет весь экран */
+    background-position: center; /* Центрирование */
+    background-repeat: no-repeat; /* Убирает повторение */
     font-family: Arial, sans-serif;
-    text-align: center;
     margin: 0;
     padding: 0;
-    height: 100vh; /* Высота 100% экрана */
+    height: 100vh; /* Высота на весь экран */
     display: flex;
     justify-content: center;
     align-items: center;
     color: white; /* Цвет текста */
-}
-
-.container {
-    padding: 20px;
     text-align: center;
 }
 
-h1, p {
-    margin: 10px 0;
+.container {
+    background-color: rgba(0, 0, 0, 0.6); /* Полупрозрачный черный фон для текста */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
 }
 
 button {
-    padding: 20px 50px;
-    background-image: url('button-bg.png'); /* Изображение для кнопки */
+    padding: 15px 40px;
+    background-image: url('button-bg.png'); /* Фоновое изображение для кнопки */
     background-size: cover;
     background-position: center;
     border: none;
@@ -37,15 +40,5 @@ button {
 }
 
 button:hover {
-    opacity: 0.8;
+    opacity: 0.8; /* Эффект при наведении */
 }
-
-h1 {
-    font-size: 24px;
-    font-weight: bold;
-}
-
-p {
-    font-size: 16px;
-}
-
