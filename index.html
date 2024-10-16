@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App</title>
+    <script>
+        // Telegram WebApp готов к использованию
+        window.Telegram.WebApp.ready();
+
+        // Получение информации о пользователе
+        const user = window.Telegram.WebApp.initDataUnsafe.user;
+        console.log(`Привет, ${user.first_name}!`);
+
+        // Изменение текста основной кнопки
+        Telegram.WebApp.MainButton.setText("Нажми меня");
+        Telegram.WebApp.MainButton.show();
+
+        // Обработка нажатия кнопки
+        Telegram.WebApp.onEvent('mainButtonClicked', () => {
+            Telegram.WebApp.sendData("Кнопка была нажата!");
+            Telegram.WebApp.close();
+        });
+    </script>
+</head>
+<body>
+    <h1>Добро пожаловать в мое Telegram Web App!</h1>
+</body>
+</html>
