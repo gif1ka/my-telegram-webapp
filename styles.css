@@ -1,6 +1,6 @@
 body {
     background-image: url('background.jpg'); /* Фоновое изображение */
-    background-size: cover; /* Масштабирование на весь экран */
+    background-size: cover; /* Растянуть фон на весь экран */
     background-position: center; /* Центрирование фона */
     font-family: Arial, sans-serif;
     text-align: center;
@@ -10,31 +10,42 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    color: white; /* Цвет текста */
 }
 
 .container {
-    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый блок */
     padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
-h1 {
-    color: #333;
+h1, p {
+    margin: 10px 0;
 }
 
 button {
-    padding: 10px 20px;
-    background-image: url('button-bg.png'); /* Фоновое изображение для кнопки */
+    padding: 20px 50px;
+    background-image: url('button-bg.png'); /* Изображение для кнопки */
     background-size: cover;
     background-position: center;
-    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    font-size: 18px;
+    color: white;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Легкая тень */
+    transition: opacity 0.3s ease;
 }
 
 button:hover {
-    opacity: 0.9; /* Легкий эффект затемнения при наведении */
+    opacity: 0.8;
 }
+
+h1 {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+p {
+    font-size: 16px;
+}
+
