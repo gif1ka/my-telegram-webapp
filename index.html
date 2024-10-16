@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Web App</title>
     <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://unpkg.com/tonweb/dist/tonweb.min.js"></script> <!-- Подключение TON Web библиотек -->
 </head>
 <body>
     <div class="container">
         <h1>Hey <span id="username">"Username"</span>!</h1>
-        <button id="mainButton"></button>
+        <button id="mainButton">Claim Reward</button>
+        <button id="connectTon">Connect to TON Wallet</button> <!-- Кнопка подключения к TON -->
     </div>
 
     <script>
@@ -30,6 +32,26 @@
         document.getElementById('mainButton').addEventListener('click', () => {
             alert("Reward button clicked!");
         });
+
+        // Функция подключения к TON кошельку
+        document.getElementById('connectTon').addEventListener('click', async () => {
+            try {
+                // Создание экземпляра TON Web
+                const tonWeb = new TonWeb();
+                
+                // Запрос адреса кошелька
+                const wallet = tonWeb.wallet.create({ workchain: 0 }); // 0 - основная цепочка
+                const address = await wallet.getAddress();
+                alert(`Ваш адрес кошелька: ${address.toString(true)}`); // Вывод адреса
+            } catch (error) {
+                console.error("Ошибка подключения к TON:", error);
+                alert("Не удалось подключиться к кошельку TON.");
+            }
+        });
     </script>
+    
+    <script src="https://unpkg.com/tonweb/dist/tonweb.min.js"></script>
+
+
 </body>
 </html>
