@@ -1,0 +1,40 @@
+body {
+    background-image: url('background.jpg'); /* Фоновое изображение */
+    background-size: cover; /* Масштабирование на весь экран */
+    background-position: center; /* Центрирование фона */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Высота 100% экрана */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый блок */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #333;
+}
+
+button {
+    padding: 10px 20px;
+    background-image: url('button-bg.png'); /* Фоновое изображение для кнопки */
+    background-size: cover;
+    background-position: center;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    opacity: 0.9; /* Легкий эффект затемнения при наведении */
+}
