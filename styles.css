@@ -1,4 +1,26 @@
-/* Остальные стили остаются прежними */
+body {
+    background-color: black; /* Устанавливаем черный фон */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* Высота на весь экран */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white; /* Цвет текста */
+    text-align: center;
+}
+
+.container {
+    background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон для текста */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h1 {
+    font-size: 28px;
+    margin-bottom: 20px;
+}
 
 button {
     padding: 15px 40px;
