@@ -1,6 +1,7 @@
 body {
-    background-color: black; /* Устанавливаем черный фон */
-    font-family: Arial, sans-serif;
+    background-image: url('assets/background.jpg'); /* Устанавливаем фоновое изображение */
+    background-size: cover; /* Изображение растягивается на весь экран */
+    background-position: center; /* Центрируем изображение */
     margin: 0;
     padding: 0;
     height: 100vh; /* Высота на весь экран */
@@ -15,6 +16,7 @@ body {
     background-color: rgba(0, 0, 0, 0.8); /* Полупрозрачный черный фон для текста */
     padding: 30px;
     border-radius: 10px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.5); /* Легкая тень для контейнера */
 }
 
 h1 {
@@ -24,7 +26,7 @@ h1 {
 
 button {
     padding: 15px 40px;
-    background-image: url('button-bg.png'); /* Фоновое изображение для кнопки */
+    background-image: url('assets/button-bg.png'); /* Фоновое изображение для кнопки */
     background-size: cover;
     background-position: center;
     border: none;
@@ -39,4 +41,11 @@ button {
 
 button:hover {
     opacity: 0.8; /* Эффект при наведении */
+}
+
+#walletInfo {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid white; /* Обводка */
+    border-radius: 10px;
 }
