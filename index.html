@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>Hey <span id="username">"Username"</span>!</h1>
+        <h1>Hey <span id="username">User</span>!</h1> <!-- Имя пользователя -->
         <button id="mainButton">Claim Reward</button>
         <button id="connectTon">Connect to TON Wallet</button> <!-- Кнопка подключения к TON -->
     </div>
@@ -17,9 +17,10 @@
     <script>
         const tg = window.Telegram.WebApp;
 
+        // Получение имени пользователя из Telegram
         const user = tg.initDataUnsafe?.user;
         if (user) {
-            document.getElementById("username").textContent = user.first_name || "User";
+            document.getElementById("username").textContent = user.first_name || "User"; // Используем имя пользователя
         }
 
         tg.MainButton.text = "Claim Reward";
@@ -27,10 +28,6 @@
 
         tg.onEvent('mainButtonClicked', () => {
             tg.sendData("Reward claimed!");
-        });
-
-        document.getElementById('mainButton').addEventListener('click', () => {
-            alert("Reward button clicked!");
         });
 
         // Функция подключения к TON кошельку
@@ -52,6 +49,10 @@
     
     <script src="https://unpkg.com/tonweb/dist/tonweb.min.js"></script>
 
-
 </body>
 </html>
+
+
+
+
+
