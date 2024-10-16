@@ -4,59 +4,30 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Telegram Web App</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            margin: 0;
-            padding: 0;
-        }
-        .container {
-            margin-top: 50px;
-        }
-        h1 {
-            color: #4CAF50;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #45a049;
-        }
-    </style>
+    <link rel="stylesheet" href="assets/styles.css">
 </head>
 <body>
     <div class="container">
         <h1>Привет, <span id="username"></span>!</h1>
-        <p>Это пример Telegram Web App.</p>
+        <p>Это пример Telegram Web App с использованием изображений.</p>
         <button id="mainButton">Нажми меня</button>
     </div>
 
     <script>
-        // Инициализация Telegram Web App
         const tg = window.Telegram.WebApp;
 
-        // Отображаем информацию о пользователе
         const user = tg.initDataUnsafe?.user;
         if (user) {
             document.getElementById("username").textContent = user.first_name || "Пользователь";
         }
 
-        // Показ основной кнопки Telegram Web App
         tg.MainButton.text = "Отправить данные";
         tg.MainButton.show();
 
-        // Обработка клика по основной кнопке Telegram Web App
         tg.onEvent('mainButtonClicked', () => {
             tg.sendData("Пример данных, отправленных в Telegram!");
         });
 
-        // Обработка нажатия кнопки на странице
         document.getElementById('mainButton').addEventListener('click', () => {
             alert("Кнопка была нажата!");
         });
