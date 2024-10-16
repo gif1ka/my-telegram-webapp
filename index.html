@@ -8,9 +8,12 @@
 </head>
 <body>
     <div class="container">
-        <h1>Привет, <span id="username"></span>!</h1>
-        <p>Это пример Telegram Web App с использованием изображений.</p>
-        <button id="mainButton">Нажми меня</button>
+        <img src="assets/background.jpg" alt="Logo" style="width: 150px; margin-bottom: 20px;">
+        <h1>Hey <span id="username">"Username"</span>!</h1>
+        <p>You've decoded the blockchain and cracked the cryptographic code!</p>
+        <p>Welcome to the digital treasure hunt where memes are money and HODLing is a lifestyle.</p>
+        <p><strong>It’s time to be rewarded! 💰</strong></p>
+        <button id="mainButton"></button>
     </div>
 
     <script>
@@ -18,18 +21,18 @@
 
         const user = tg.initDataUnsafe?.user;
         if (user) {
-            document.getElementById("username").textContent = user.first_name || "Пользователь";
+            document.getElementById("username").textContent = user.first_name || "User";
         }
 
-        tg.MainButton.text = "Отправить данные";
+        tg.MainButton.text = "Claim Reward";
         tg.MainButton.show();
 
         tg.onEvent('mainButtonClicked', () => {
-            tg.sendData("Пример данных, отправленных в Telegram!");
+            tg.sendData("Reward claimed!");
         });
 
         document.getElementById('mainButton').addEventListener('click', () => {
-            alert("Кнопка была нажата!");
+            alert("Reward button clicked!");
         });
     </script>
 </body>
